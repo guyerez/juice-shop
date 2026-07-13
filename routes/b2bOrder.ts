@@ -13,7 +13,7 @@ import { challenges } from '../data/datacache'
 import * as security from '../lib/insecurity'
 import * as utils from '../lib/utils'
 
-export function b2bOrder() {
+export function b2bOrder () {
   return ({ body }: Request, res: Response, next: NextFunction) => {
     if (utils.isChallengeEnabled(challenges.rceChallenge) || utils.isChallengeEnabled(challenges.rceOccupyChallenge)) {
       const orderLinesData = body.orderLinesData || ''
@@ -37,11 +37,11 @@ export function b2bOrder() {
     }
   }
 
-  function uniqueOrderNumber() {
+  function uniqueOrderNumber () {
     return security.hash(`${(new Date()).toString()}_B2B`)
   }
 
-  function dateTwoWeeksFromNow() {
+  function dateTwoWeeksFromNow () {
     return new Date(new Date().getTime() + (14 * 24 * 60 * 60 * 1000)).toISOString()
   }
 }
